@@ -1,0 +1,44 @@
+﻿@model IEnumerable<ServiceContracts.DTO.PersonResponse>
+@using ServiceContracts.DTO
+@{
+	ViewBag.Title = null;
+}
+
+
+
+<link href="@("http://"+Context.Request.Host.ToString() + "/StyleSheet.css")" rel="stylesheet" />
+<h1>Persons List</h1>
+	<table class="table" w-100 mt>
+		<thead>
+			<tr>
+				 <th>Name</th>
+				 <th>Email</th>
+				 <th>Date Of Birth</th>
+				 <th>Gender</th>
+				 <th>Address</th>
+				 <th>Address</th>
+				 <th>Country</th>
+				 <th>Receive News Letters</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			@foreach (PersonResponse p in Model)
+			{
+				<tr>
+					<td>@p.Name</td>
+					<td>@p.Email</td>
+					<td>@p.DateOFBirth?.ToString("dd-mm-yyyy")</td>
+					<br />
+					<td>@p.Gender</td>
+					<td>@p.Address</td>
+					<td>@p.Country</td>
+					<td>@p.ReceiveNewsLetters</td>
+					<td style="width:20%">
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+
+

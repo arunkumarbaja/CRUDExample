@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/StyleSheet.css" rel="stylesheet" />
+    <link rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer"  />
+    <title>@ViewBag.Title</title>
+</head>
+<div class="center-box">
+   @* <img src="~/newlogo.jpg" /> sometimes the new updated image may not be uploaded due to browser cache stores previous one so we use asp-append-version="true"*@
+    <img src="~/arun.jpg" asp-append-version="true" class="w-2`" />
+</div>
+<body>
+    <div class="container">
+        <div class="navbar"> 
+        <ul>
+            <li>
+                @Html.ActionLink("Persons","Index","Persons")
+            </li>
+            <li>
+                <a asp-controller="Account" asp-action="Register">Register</a>
+            </li>
+        </ul>
+        </div>
+
+        <div class=" page-content">
+            @RenderBody()
+        </div>
+    </div>
+    @RenderSection("scripts",required: false)
+</body>
+</html>

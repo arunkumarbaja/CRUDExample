@@ -1,0 +1,40 @@
+﻿@model PersonResponse
+
+@using ServiceContracts.DTO
+
+@{
+	ViewBag.Title = "Delete Person";
+}
+
+<a asp-controller="Persons" asp-action="Index">Back To List</a>
+
+<form  asp-controller="Persons" asp-action="Delete" method="post"> @* it internally calls as <form action="~/Persons/Create" Method = "Get">*@
+<div class="w-50">
+
+	@*Person Name*@
+	<div class="form-field flex">
+		<div class="w-25">
+			<label asp-for="Name" class="form-label">Person Name</label>
+		</div>
+		<div class="flex-1">
+				<input asp-for="Name" class="form-input" disabled="disabled" />@* it Internally calls as <input type="text" class="form-input" id="Name" name="Name" />*@
+				<span asp-validation-for="Name" class="text-red"></span>
+	    </div>
+		
+	</div>
+	@*Email*@
+	<div class="form-field flex">
+		<div class="w-25">
+			<label asp-for="Email" class="form-label">Email</label>
+		</div>
+		<div class="flex-1">
+			<input asp-for="Email" class="form-input" disabled="disabled" />
+			<span asp-validation-for="Email" class="text-red"></span>
+		</div>
+	</div>
+
+	<br />
+	<button type="submit" class="button butt"> Delete</button>
+
+	<div asp-validation-summary="All" class="text-red"></div>
+</form>

@@ -1,0 +1,110 @@
+﻿@model PersonAddRequest
+
+@using ServiceContracts.DTO
+
+@{
+	ViewBag.Title = "Create Person";
+}
+
+<a asp-controller="Persons" asp-action="Index">Back To List</a>
+
+<form  asp-controller="Persons" asp-action="Create"> @* it internally calls as <form action="~/Persons/Create" Method = "Get">*@
+<div class="w-50">
+
+	@*Person Name*@
+	<div class="form-field flex">
+		<div class="w-25">
+			<label asp-for="Name" class="form-label">Person Name</label>
+		</div>
+		<div class="flex-1">
+				<input asp-for="Name" class="form-input" />@* it Internally calls as <input type="text" class="form-input" id="Name" name="Name" />*@
+				<span asp-validation-for="Name" class="text-red"></span>
+			</div>
+		
+	</div>
+	@*Email*@
+	<div class="form-field flex">
+		<div class="w-25">
+			<label asp-for="Email" class="form-label">Email</label>
+		</div>
+		<div class="flex-1">
+			<input asp-for="Email" class="form-input" />
+			<span asp-validation-for="Email" class="text-red"></span>
+		</div>
+	</div>
+
+	@*DOb*@
+	<div class="form-field flex">
+		<div class="w-25">
+			<label asp-for="DateOFBirth" class="form-label">DateOfBirth</label>
+		</div>
+		<div class="flex-1">	
+			<input asp-for="DateOFBirth"class="form-input" />
+		</div>
+	</div>
+	@*Gender*@
+	<div class="form-field flex">
+		<div class="w-25">
+			<label asp-for="Gender" class="form-label">Gender</label>
+		</div>
+		<div class="flex-1">
+				@{
+					string[] Gender=Enum.GetNames(typeof(GenderOptions));
+					foreach(string gender in Gender)
+					{
+						
+			         <input type="radio" asp-for="Gender" value="@gender" class="ml" />
+			         <label for="@gender">@gender</label>
+					}
+					<br /><span asp-validation-for="Gender" class="text-red"></span>
+				}			
+		</div>
+
+	</div>
+
+	@*Country*@
+	<div class="form-field flex">
+		<div class="w-25">
+			<label asp-for="CountryID" class="form-label">CountryID</label>
+		</div>
+		<div class="flex-1">
+				<select asp-for="CountryID" asp-items="@ViewBag.CountryList" class="form-input">
+				<option value="">Please select</option>
+				<span asp-validation-for="CountryID" class="text-red"></span>
+			</select>
+		</div>
+	</div>
+
+
+	@*Address*@ 
+	<div class="form-field flex">
+		<div class="w-25">
+			<label asp-for="Address" class="form-label">Address</label>
+		</div>
+		<div class="flex-1">
+			<textarea class="form-input" asp-for="Address"></textarea>
+			<span asp-validation-for="Address" class="text-red"></span>
+
+		</div>
+	</div>
+
+	@*ReceiveNewsLetters*@
+	<div class="form-field flex">
+		<div class="flex-1">
+		    <label asp-for="ReceiveNewsLetters" class="form-label">Receive News Letters</label> &nbsp;
+			<input  asp-for="ReceiveNewsLetters" value="true"  class="form-input"/>
+
+		</div>
+	</div>
+
+	</div>
+	<button type="submit" class="button button-green-back"> Create</button>
+	<br />
+	<div asp-validation-summary="All" class="text-red"></div>
+</form>
+
+@section scripts{
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" asp-fallback-test="window-jQuery" asp-fallback-src="~/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.4/jquery.validate.min.js" asp-fallback-test="window-jQuery" asp-fallback-src="jquery.validate.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js" asp-fallback-test="window-jQuery" asp-fallback-src="jquery.validate.unobtrusive.min.js"></script>
+}
